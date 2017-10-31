@@ -2,15 +2,14 @@
 Implementation of K-means by Python.
 
 ## Description
-Data: Iris data .  
+Not used sklearn library for K-means itself.
+Data: Iris data  
 Visualization by t-SNE (4D data -> 2D data)
+k(cluster number) = 2~5
 
-## VS. 
-
-## Requirement
-Python3.6 .  
+## Requirements
+Python3.6  
 sklearn
 
 ## Usage
-
-## Contribution
+Run kmeans.py
