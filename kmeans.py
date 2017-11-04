@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import random
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 
@@ -7,14 +8,16 @@ df = pd.read_csv('iris.csv') #load data
 data = np.delete(np.array(df), 4, axis=1)
 
 max_iter = 500 #max iteration of the centroid calculation
-z = 1 #for plotting at L.27
+z = 1 #for plotting at L.29
 for k in range(2,6):
 	index = np.array([0]*150)
-	initial_c = np.random.randint(0,150,k) #select initial centroids as random data vectors
+	#select initial centroids as random data vectors
+	initial_c = random.sample(range(151), k)
+	#initial_c = np.random.randint(0,150,k)
 	for i in range(len(initial_c)):
 		index[initial_c[i]] = i
 	for i in range(max_iter): #centroids update
-		C = np.array([np.mean(data[index==j],axis=0) for j in range(k)]) #重心の計算
+		C = np.array([np.mean(data[index==j],axis=0) for j in range(k)]) #calculate centroids
 		new_index = [np.argmin([np.linalg.norm(x-c)**2 for c in C]) for x in data]
 		if (all(index == np.array(new_index))):
 			break
